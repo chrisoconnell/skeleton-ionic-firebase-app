@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input
+          formControlName="email"
+          type="email"
+          placeholder="Your email address"
+          [class.invalid]="isEmailFieldInvalid()">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="error-message" *ngIf="isEmailFieldInvalid()">
+      <ion-label>Please enter a valid email address.</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input
+          formControlName="password"
+          type="password"
+          placeholder="Your password"
+          [class.invalid]="isPasswordFieldInvalid()">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="error-message" *ngIf="isPasswordFieldInvalid()">
+      <ion-label>Your password needs more than 6 characters.</ion-label>
+    </ion-item>
+
+    <ion-button (click)="loginUser()" expand="block" [disabled]="!loginForm.valid">
+      Log In
+    </ion-button>
+  </form>
+
+  <ion-button expand="block" fill="clear" routerLink="/signup"> Create a new account</ion-button>
+
+  <ion-button expand="block" fill="clear" routerLink="/reset-password"> I forgot my password :(</ion-button>
+</ion-content>
